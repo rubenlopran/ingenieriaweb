@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Publicacion;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,8 +25,9 @@ class PublicacionController extends Controller
         }else{
             $publicacions = Publicacion::where('descripcion','LIKE',"%{$request->get('filtro')}%")->orderBy('updated_at','desc')->paginate();
         }
-
-        return view('publicacion.index', compact('publicacions'))
+        $likes = Like::where('user_id', Auth::user()->id)->get();
+        $aux = false;
+        return view('publicacion.index', compact('publicacions','likes','aux'))
             ->with('i', (request()->input('page', 1) - 1) * $publicacions->perPage());
     }
 

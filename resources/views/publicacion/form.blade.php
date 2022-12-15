@@ -7,7 +7,7 @@
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-        <input type="hidden" name="like" value="0">
+        <input type="hidden" name="like" value="{{$publicacion->like}}">
         <input type="file" name="url" placeholder="Choose image" id="image" value="{{$publicacion->url}}">
 
     </div>

@@ -30,7 +30,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="">
+                <a class="navbar-brand" href="{{ route('publicacions.index')}}">
                     {{ config('app.name', 'Laravel') }} <i class="fa-brands fa-twitter"></i>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -50,6 +50,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="color: black" href="{{ route('advertisement.myadvs')}}"> {{ __('My Advertisements')}}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: black" href="{{ route('publicacions.index')}}"> {{ __('Publicaciones')}}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="color: black" href="{{ route('mapa')}}"> {{ __('Map')}}</a>

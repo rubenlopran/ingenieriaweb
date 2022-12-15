@@ -64,16 +64,45 @@
 											<td>{{ $publicacion->descripcion }}</td>
                                             <td>{{ $publicacion->user->name }}</td>
 
-                                            <td>
-                                                <form action="{{ route('publicacions.destroy',$publicacion->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('publicacions.show',$publicacion->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('publicacions.edit',$publicacion->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form>
-                                            </td>
+                                            @if (Auth::user()->id == $publicacion->user_id)
+                                                <td>
+                                                    <form action="{{ route('publicacions.destroy',$publicacion->id) }}" method="POST">
+                                                        <a class="btn btn-sm btn-primary " href="{{ route('publicacions.show',$publicacion->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                        <a class="btn btn-sm btn-success" href="{{ route('publicacions.edit',$publicacion->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    </form>
+                                                </td>
+                                            @else
+                                                @foreach ($likes as $like)
+                                                    @if ($like->user_id == Auth::user()->id && $like->publicacion_id == $publicacion->id)
+                                                        @php
+                                                            $aux = true;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                @if (!$aux)
+                                                    <td>
+                                                        <form action="{{ route('likes.store',$publicacion->id) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" name="publicacion_id" value="{{$publicacion->id}}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-trash"></i> Like</button>
+                                                        </form>
+                                                    </td>
+                                                @else
+                                                <td>
+                                                    <form action="{{ route('likes.destroy',$publicacion->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Disike</button>
+                                                    </form>
+                                                </td>
+                                                @endif
+                                            @endif
                                         </tr>
+                                        @php
+                                            $aux=false;
+                                        @endphp
                                     @endforeach
                                 </tbody>
                             </table>

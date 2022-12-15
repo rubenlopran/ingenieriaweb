@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Like
+    Song
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Like') }}
+                                {{ __('Song') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('likes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('songs.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,20 +36,30 @@
                                     <tr>
                                         <th>No</th>
                                         
+										<th> Id</th>
+										<th>Decade</th>
+										<th>Artist</th>
+										<th>Song</th>
+										<th>Weeksatone</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($likes as $like)
+                                    @foreach ($songs as $song)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $like->user->name }}</td>
+                                            
+											<td>{{ $song->_id }}</td>
+											<td>{{ $song->decade }}</td>
+											<td>{{ $song->artist }}</td>
+											<td>{{ $song->song }}</td>
+											<td>{{ $song->weeksAtOne }}</td>
 
                                             <td>
-                                                <form action="{{ route('likes.destroy',$like->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('likes.show',$like->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('likes.edit',$like->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('songs.destroy',$song->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('songs.show',$song->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('songs.edit',$song->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -62,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $likes->links() !!}
+                {!! $songs->links() !!}
             </div>
         </div>
     </div>

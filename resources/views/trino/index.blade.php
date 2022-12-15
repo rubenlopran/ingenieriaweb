@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Like
+    Trino
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Like') }}
+                                {{ __('Trino') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('likes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('trinos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,20 +36,34 @@
                                     <tr>
                                         <th>No</th>
                                         
+										<th> Id</th>
+										<th>Autor</th>
+										<th>Post</th>
+										<th>Lat</th>
+										<th>Long</th>
+										<th>Stamp</th>
+										<th>Reports</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($likes as $like)
+                                    @foreach ($trinos as $trino)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $like->user->name }}</td>
+                                            
+											<td>{{ $trino->_id }}</td>
+											<td>{{ $trino->autor }}</td>
+											<td>{{ $trino->post }}</td>
+											<td>{{ $trino->lat }}</td>
+											<td>{{ $trino->long }}</td>
+											<td>{{ $trino->stamp }}</td>
+											<td>{{ $trino->reports }}</td>
 
                                             <td>
-                                                <form action="{{ route('likes.destroy',$like->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('likes.show',$like->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('likes.edit',$like->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('trinos.destroy',$trino->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('trinos.show',$trino->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('trinos.edit',$trino->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -62,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $likes->links() !!}
+                {!! $trinos->links() !!}
             </div>
         </div>
     </div>

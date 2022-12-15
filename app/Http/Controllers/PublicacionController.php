@@ -119,6 +119,7 @@ class PublicacionController extends Controller
     public function destroy($id)
     {
         $publicacion = Publicacion::find($id)->delete();
+        LIKE::where('publicacion_id',$id)->delete();
 
         return redirect()->route('publicacions.index')
             ->with('success', 'Publicacion deleted successfully');

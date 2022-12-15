@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use App\Models\Publicacion;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -35,8 +36,9 @@ class LikeController extends Controller
     {
         $like = new Like();
         $like["publicacion_id"] = $request->get('publicacion_id');
-        echo($request->publicacion_id);
-        //return view('like.create', compact('like'));
+        $publicaciones = Publicacion::all()->pluck('descripcion', 'id');
+        $usuarios = User::all()->pluck('name', 'id');
+        return view('like.create', compact('like', 'publicaciones', 'usuarios'));
     }
 
     /**

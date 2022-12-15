@@ -45,6 +45,7 @@ Route::resource('booking', BookingController::class)->middleware('auth');
 Route::resource('location', LocationController::class);
 Route::resource('publicacions', PublicacionController::class)->middleware('auth');
 Route::resource('likes', LikeController::class)->middleware('auth');
+Route::resource('songs', SongController::class)->middleware('auth');
 
 
 Route::post('/almazara/show', 'BookingController@show')->name('almazara.show')->middleware('auth');

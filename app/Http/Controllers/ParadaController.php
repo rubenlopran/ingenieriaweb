@@ -23,11 +23,11 @@ class ParadaController extends Controller
         $filtrolineas = $request->get('codLinea');
         $filtrosentido = $request->get('sentido');
         if($filtrolineas != null && $filtrosentido==null){ 
-            $paradas = Parada::where('codLinea','LIKE',"{$filtrolineas}")->paginate();
+            $paradas = Parada::where('codLinea','LIKE',"%{$filtrolineas}%")->paginate();
         } else if($filtrosentido != null && $filtrolineas==null){ 
-            $paradas = Parada::where('sentido','=',"{$filtrosentido}")->paginate();
+            $paradas = Parada::where('sentido','LIKE',"%{$filtrosentido}%")->paginate();
         } else if($filtrolineas != null && $filtrosentido!=null){ 
-            $paradas = Parada::where('sentido','LIKE',"%{$filtrosentido}%")->where('codLinea','LIKE',"%{$request->get('filtrolinea')}%")->paginate();
+            $paradas = Parada::where('sentido','LIKE',"%{$filtrosentido}%")->where('codLinea','LIKE',"%{$filtrolineas}%")->paginate();
         } 
         else if($request->get('filtroparada') != null){
             $paradas = Parada::where('nombreParada','LIKE',"%{$request->get('filtroparada')}%")->paginate();

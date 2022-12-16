@@ -47,7 +47,7 @@ class GoogleSocialiteController extends Controller
      
                 Auth::login($nuevoUsuario);
             }
-            return redirect()->route('publicacions.index')
+            return redirect()->route('paradas.index')
             ->with('success', 'You\'ve been logged succesfully.');
      
         } catch (Exception $e) {

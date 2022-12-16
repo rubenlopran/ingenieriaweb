@@ -115,7 +115,7 @@
                                 var input = document.getElementById('address');
                                 
                                 var geocoder = new google.maps.Geocoder(); // initialize google map object
-                                var address = "Madrid, España";
+                                var address = "Malaga, España";
                                 geocoder.geocode({'address': address}, function(results, status) {
                                     if (status === 'OK') {
                                         document.getElementById("latitude").value = results[0].geometry['location'].lat();

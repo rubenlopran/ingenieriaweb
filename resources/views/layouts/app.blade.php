@@ -30,7 +30,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('publicacions.index')}}">
+                <a class="navbar-brand" href="{{ route('paradas.index')}}">
                     {{ config('app.name', 'Laravel') }} <i class="fa-brands fa-twitter"></i>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -43,19 +43,10 @@
                     @else
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" style="color: black" href="{{ route('advertisement.index')}}"> {{ __('Advertisements')}}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" style="color: black" href="{{ route('booking.index')}}"> {{ __('My Bookings')}}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" style="color: black" href="{{ route('advertisement.myadvs')}}"> {{ __('My Advertisements')}}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" style="color: black" href="{{ route('publicacions.index')}}"> {{ __('Publicaciones')}}</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" style="color: black" href="{{ route('mapa')}}"> {{ __('Map')}}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: black" href="{{ route('users.index') }}"> {{ __('Usuario')}}</a>
                             </li>
                         </ul>
                     @endguest

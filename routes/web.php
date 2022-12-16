@@ -39,13 +39,9 @@ Route::post('/logout', 'InicioSesion@logout')->name('logout')->middleware('auth'
 Route::get('/menu', 'MenuController@index')->name('menu')->middleware('auth');
 
 
-Route::resource('posts', PostController::class)->middleware('auth');
-Route::resource('advertisement', AdvertisementController::class)->middleware('auth');
-Route::resource('booking', BookingController::class)->middleware('auth');
 Route::resource('location', LocationController::class);
-Route::resource('publicacions', PublicacionController::class)->middleware('auth');
-Route::resource('likes', LikeController::class)->middleware('auth');
-Route::resource('songs', SongController::class)->middleware('auth');
+Route::resource('paradas', ParadaController::class)->middleware('auth');
+Route::resource('users', UserController::class)->middleware('auth');
 
 
 Route::post('/almazara/show', 'BookingController@show')->name('almazara.show')->middleware('auth');
